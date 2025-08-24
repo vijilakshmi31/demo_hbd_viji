@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0c0c17 0%, #1a1a2e 50%, #16213e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+        }
+        
+        /* Premium background elements */
+        .premium-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(101, 78, 163, 0.15) 0%, transparent 70%);
+        }
+
+        .bg-circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+        }
+
+        .bg-circle:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            bottom: -200px;
+            right: -200px;
+            background: radial-gradient(circle, rgba(214, 51, 132, 0.1) 0%, transparent 70%);
+        }
+        
+        .title-container {
+            position: fixed;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            z-index: 1000;
+            pointer-events: none;
+        }
+        
+        /* ----- ENHANCED TITLE (PREMIUM STYLE) ----- */
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 60px;
+            background: linear-gradient(45deg, #b9f2ff, #d63384, #654ea3, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: 
+                shimmer 3s infinite alternate,
+                float 3s ease-in-out infinite;
+            text-shadow: 0 0 15px rgba(185, 242, 255, 0.3);
+            position: relative;
+            margin: 0;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        .title::after {
+            content: '♥';
+            position: absolute;
+            font-size: 40px;
+            color: #ff4757;
+            animation: heartbeat 1.5s infinite;
+            margin-left: 10px;
+            filter: drop-shadow(0 0 8px rgba(255, 71, 87, 0.7));
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        
+        .subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #b9f2ff;
+            text-shadow: 0 0 5px rgba(185, 242, 255, 0.3);
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        
+        /* ----- NAV BUTTONS (PREMIUM STYLE) ----- */
+        .nav-button {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(185, 242, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b9f2ff;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 0 15px rgba(101, 78, 163, 0.5);
+        }
+
+        .nav-button:hover {
+            background: rgba(214, 51, 132, 0.3);
+            box-shadow: 
+                0 0 25px rgba(214, 51, 132, 0.5),
+                0 0 50px rgba(101, 78, 163, 0.6);
+        }
+
+        .nav-button.prev {
+            left: 30px;
+        }
+
+        .nav-button.next {
+            right: 30px;
+        }
+
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-top: 3px solid #b9f2ff;
+            border-right: 3px solid #b9f2ff;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button.prev::before {
+            transform: rotate(-135deg);
+            margin-left: 5px;
+        }
+
+        .nav-button.next::before {
+            transform: rotate(45deg);
+            margin-right: 5px;
+        }
+
+        .nav-button:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .nav-button.active {
+            background: rgba(214, 51, 132, 0.5);
+            box-shadow: 
+                0 0 30px rgba(214, 51, 132, 0.7),
+                0 0 50px rgba(101, 78, 163, 0.6);
+        }
+
+        /* ----- INTENSE SPOTLIGHT (PREMIUM STYLE) ----- */
+        .spotlight {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            transform: translateX(-50%);
+            background: radial-gradient(
+                circle at center, 
+                rgba(101, 78, 163, 0.4) 0%, 
+                transparent 70%
+            );
+            pointer-events: none;
+            z-index: 2;
+            animation: spotlightPulse 3s infinite alternate;
+        }
+
+        @keyframes spotlightPulse {
+            0% { opacity: 0.4; transform: translateX(-50%) scale(1); }
+            100% { opacity: 0.7; transform: translateX(-50%) scale(1.1); }
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: #b9f2ff;
+            border-radius: 50%;
+            animation: twinkle 1.5s infinite ease-in-out;
+            box-shadow: 0 0 5px #b9f2ff;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .gallery-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 2000px;
+        }
+
+        .gallery {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease-out;
+        }
+
+        .center-heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            z-index: 5;
+            animation: centerHeartPulse 2s infinite ease-in-out;
+            opacity: 0.9;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(214, 51, 132, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .center-heart img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            filter: brightness(1.1) saturate(1.2);
+        }
+
+        @keyframes centerHeartPulse {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1); 
+                box-shadow: 0 0 30px rgba(214, 51, 132, 0.6);
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.05); 
+                box-shadow: 0 0 50px rgba(214, 51, 132, 0.8);
+            }
+        }
+
+        /* ----- CARD ENHANCEMENTS (PREMIUM STYLE) ----- */
+        .card {
+            position: absolute;
+            width: 300px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+            cursor: pointer;
+            overflow: hidden;
+            transform-origin: center center;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.3),
+                0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+            z-index: 2;
+            transition: opacity 0.3s;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            right: -100%;
+            bottom: -100%;
+            background: radial-gradient(circle at center, rgba(185, 242, 255, 0.3) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .card.active {
+            transform: scale(1.2) translateZ(200px);
+            box-shadow: 
+                0 25px 60px rgba(214, 51, 132, 0.7),
+                0 10px 25px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .card.active::after {
+            opacity: 0.3;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+            transition: transform 0.5s;
+        }
+
+        .card:hover img {
+            transform: scale(1.2);
+        }
+
+        .number {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(13, 13, 25, 0.7);
+            color: #b9f2ff;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 3;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(185, 242, 255, 0.3);
+        }
+
+        .ambient-light {
+            position: fixed;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at 50% 0%,
+                rgba(185, 242, 255, 0.1) 0%,
+                transparent 50%
+            );
+            z-index: 1;
+        }
+        
+        /* ----- GLOWING FLOATING HEARTS (PREMIUM STYLE) ----- */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(185, 242, 255, 0.7);
+            text-shadow: 0 0 12px rgba(185, 242, 255, 0.9);
+            animation: floatUp 15s linear infinite;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.7);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        /* ----- RESPONSIVE TWEAKS ----- */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 40px;
+            }
+            .title::after {
+                font-size: 30px;
+            }
+            .nav-button {
+                width: 40px;
+                height: 40px;
+            }
+            .nav-button::before {
+                width: 12px;
+                height: 12px;
+            }
+            .center-heart {
+                width: 100px;
+                height: 100px;
+            }
+            .gallery, .card {
+                width: 240px;
+                height: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="premium-bg">
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+    </div>
+    
+    <div class="title-container">
+        <h1 class="title">"Hey Doctor... You're the most beautiful soul I've met in my 24 years. Keep smiling and rocking—nothing can stop you from reaching your dreams. I'm There for You</h1>
+        <p class="subtitle">Scroll through our memories</p>
+    </div>
+    
+    <div class="ambient-light"></div>
+    <div class="spotlight"></div>
+    <div class="stars"></div>
+    <div class="floating-hearts"></div>
+    <button class="nav-button prev" aria-label="Previous"></button>
+    <button class="nav-button next" aria-label="Next"></button>
+    <div class="gallery-container">
+        <div class="gallery">
+            <div class="center-heart">
+                <img src="img11.jpg" alt="Special Memory" />
+            </div>
+        </div>
+    </div>
+    <audio id="bgMusic" loop>
+        <source src="birthday.mp4" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        function createFloatingHearts() {
+            const heartsContainer = document.querySelector('.floating-hearts');
+            const heartSymbols = ['♥', '❤', '💕', '💖', '💗'];
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = 15 + Math.random() * 15 + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = 10 + Math.random() * 20 + 'px';
+                heart.style.opacity = 0.5 + Math.random() * 0.5;
+                heart.style.color = `rgba(185, 242, 255, ${0.5 + Math.random() * 0.5})`;
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        function createGallery() {
+            const gallery = document.querySelector('.gallery');
+            const totalCards = 10;
+            const radius = window.innerWidth < 768 ? 400 : 600;
+            let currentAngle = 0;
+            let isDragging = false;
+            let startX = 0;
+            let currentX = 0;
+            let autoRotateInterval;
+            
+            const prevButton = document.querySelector('.nav-button.prev');
+            const nextButton = document.querySelector('.nav-button.next');
+            
+            // Array of image URLs
+            const imageUrls = [
+                'img1.jpg',
+                'img2.jpg',
+                'img3.jpg',
+                'img4.jpg',
+                'img5.jpg',
+                'img6.jpg',
+                'img7.jpg',
+                'img8.jpg',
+                'img9.jpg',
+                'img10.jpg'
+            ];
+            
+            // Create cards...
+            for (let i = 0; i < totalCards; i++) {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${imageUrls[i]}" alt="Memory ${i + 1}">
+                    <div class="number">${i + 1}</div>
+                `;
+                gallery.appendChild(card);
+            }
+
+            function rotateGallery(direction) {
+                clearInterval(autoRotateInterval);
+                currentAngle += direction * 36; // 360 / 10 cards = 36 degrees per card
+                updateCards();
+                
+                // Restart auto-rotation after 5 seconds of inactivity
+                setTimeout(() => {
+                    if (!isDragging) {
+                        startAutoRotate();
+                    }
+                }, 5000);
+            }
+
+            // Navigation button click handlers
+            prevButton.addEventListener('click', () => rotateGallery(1));
+            nextButton.addEventListener('click', () => rotateGallery(-1));
+
+            function updateCards(extraRotation = 0) {
+                const cards = document.querySelectorAll('.card');
+                cards.forEach((card, index) => {
+                    const angle = (currentAngle + extraRotation + (index * (360 / totalCards))) * (Math.PI / 180);
+                    const x = Math.sin(angle) * radius;
+                    const z = Math.cos(angle) * radius;
+                    const rotateY = angle * (180 / Math.PI);
+                    
+                    card.style.transform = `translate3d(${x}px, 0, ${z}px) rotateY(${rotateY}deg)`;
+                    
+                    const normalizedAngle = ((currentAngle + extraRotation + (index * (360 / totalCards))) % 360 + 360) % 360;
+                    if (normalizedAngle > 350 || normalizedAngle < 10) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+
+                    const opacity = Math.max(0.2, 1 - Math.abs(normalizedAngle - 180) / 180);
+                    card.style.opacity = opacity;
+                });
+            }
+
+            // Mouse and touch event handlers
+            gallery.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.clientX;
+                currentX = currentAngle;
+                gallery.style.cursor = 'grabbing';
+                clearInterval(autoRotateInterval);
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const diff = (e.clientX - startX) * 0.5;
+                currentAngle = currentX + diff;
+                updateCards();
+
+                // Light up the appropriate button based on drag direction
+                const dragDirection = e.movementX;
+                prevButton.classList.toggle('active', dragDirection < 0);
+                nextButton.classList.toggle('active', dragDirection > 0);
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                gallery.style.cursor = 'grab';
+                prevButton.classList.remove('active');
+                nextButton.classList.remove('active');
+                
+                // Restart auto-rotation after 3 seconds
+                setTimeout(() => {
+                    if (!isDragging) {
+                        startAutoRotate();
+                    }
+                }, 3000);
+            });
+
+            // Touch events
+            gallery.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startX = e.touches[0].clientX;
+                currentX = currentAngle;
+                clearInterval(autoRotateInterval);
+                e.preventDefault();
+            });
+
+            window.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const diff = (e.touches[0].clientX - startX) * 0.5;
+                currentAngle = currentX + diff;
+                updateCards();
+                
+                // Light up the appropriate button based on touch direction
+                const touchDirection = e.touches[0].clientX - startX;
+                prevButton.classList.toggle('active', touchDirection < 0);
+                nextButton.classList.toggle('active', touchDirection > 0);
+                
+                e.preventDefault();
+            }, { passive: false });
+
+            window.addEventListener('touchend', () => {
+                isDragging = false;
+                prevButton.classList.remove('active');
+                nextButton.classList.remove('active');
+                
+                // Restart auto-rotation after 3 seconds
+                setTimeout(() => {
+                    if (!isDragging) {
+                        startAutoRotate();
+                    }
+                }, 3000);
+            });
+
+            // Mouse wheel handler
+            window.addEventListener('wheel', (e) => {
+                clearInterval(autoRotateInterval);
+                const delta = e.deltaX * 0.1 || e.deltaY * 0.1;
+                currentAngle += delta;
+                updateCards();
+                
+                // Light up the appropriate button based on wheel direction
+                prevButton.classList.toggle('active', delta > 0);
+                nextButton.classList.toggle('active', delta < 0);
+                
+                // Restart auto-rotation after 3 seconds
+                setTimeout(() => {
+                    if (!isDragging) {
+                        startAutoRotate();
+                    }
+                }, 3000);
+            });
+            
+            function startAutoRotate() {
+                clearInterval(autoRotateInterval);
+                autoRotateInterval = setInterval(() => {
+                    currentAngle += 0.3;
+                    updateCards();
+                }, 100);
+            }
+
+            // Initial update
+            updateCards();
+
+            // Start auto-rotate
+            startAutoRotate();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            createFloatingHearts();
+            createGallery();
+            
+            // Move spotlight with mouse
+            document.addEventListener('mousemove', (e) => {
+                const spotlight = document.querySelector('.spotlight');
+                spotlight.style.left = e.clientX + 'px';
+                spotlight.style.top = e.clientY + 'px';
+            });
+
+            // Hidden "I Love You" message when clicking center heart
+            document.querySelector('.center-heart').addEventListener('click', () => {
+                const message = document.createElement('div');
+                message.innerHTML = 'I Love You ♥';
+                message.style.position = 'fixed';
+                message.style.top = '50%';
+                message.style.left = '50%';
+                message.style.transform = 'translate(-50%, -50%)';
+                message.style.fontSize = '40px';
+                message.style.color = '#b9f2ff';
+                message.style.textShadow = '0 0 20px rgba(185, 242, 255, 0.7)';
+                message.style.zIndex = '10000';
+                message.style.animation = 'fadeIn 2s';
+                document.body.appendChild(message);
+                
+                setTimeout(() => {
+                    message.style.animation = 'fadeOut 2s';
+                    setTimeout(() => message.remove(), 2000);
+                }, 3000);
+            });
+        });
+
+        // Background music
+        let musicStarted = false;
+        function startMusic() {
+            if (musicStarted) return;
+            const bgMusic = document.getElementById("bgMusic");
+            if (bgMusic) {
+                bgMusic.volume = 0.5;
+                bgMusic.play().then(() => {
+                    musicStarted = true;
+                }).catch((err) => {
+                    console.warn("Music autoplay blocked:", err);
+                });
+            }
+        }
+        document.body.addEventListener("click", startMusic, { once: true });
+        document.body.addEventListener("touchstart", startMusic, { once: true });
+    </script>
+</body>
+</html>
