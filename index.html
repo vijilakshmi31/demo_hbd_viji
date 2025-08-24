@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Universe Begins With You</title>
+    <title>Happy Birthday Lakshuu | Premium Celebration</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -14,7 +15,7 @@
 
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg, #ffe6f0 0%, #ffeef7 50%, #ffffff 100%);
+            background: linear-gradient(135deg, #0c0c17 0%, #1a1a2e 50%, #16213e 100%);
             font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
@@ -22,27 +23,67 @@
             align-items: center;
             overflow-x: hidden;
             position: relative;
+            color: #ffffff;
             padding: 20px;
         }
 
-        /* Background floating emojis */
-        .floating-emoji {
+        /* Premium background elements */
+        .premium-bg {
             position: absolute;
-            font-size: 2rem;
-            opacity: 0.3;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(101, 78, 163, 0.15) 0%, transparent 70%);
+        }
+
+        .bg-circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+        }
+
+        .bg-circle:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            bottom: -200px;
+            right: -200px;
+            background: radial-gradient(circle, rgba(214, 51, 132, 0.1) 0%, transparent 70%);
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
             pointer-events: none;
             animation: float 6s ease-in-out infinite;
             z-index: 1;
+            opacity: 0.7;
+        }
+
+        .floating-element.diamond {
+            font-size: 1.8rem;
+            color: #b9f2ff;
+            text-shadow: 0 0 10px rgba(185, 242, 255, 0.7);
+        }
+
+        .floating-element.star {
+            font-size: 1.5rem;
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
         }
 
         @keyframes float {
             0%, 100% {
                 transform: translateY(0px) rotate(0deg);
-                opacity: 0.2;
             }
             50% {
                 transform: translateY(-20px) rotate(5deg);
-                opacity: 0.4;
             }
         }
 
@@ -53,68 +94,110 @@
             max-width: 1200px;
             z-index: 10;
             position: relative;
-            padding: 20px;
+            padding: 30px;
+            background: rgba(13, 13, 25, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 
+                        0 0 50px rgba(101, 78, 163, 0.2);
         }
 
-        /* Title styling */
+        /* Premium title styling */
         .main-title {
             font-family: 'Dancing Script', cursive;
-            color: #d63384;
+            color: #ffffff;
             margin-bottom: 2rem;
-            text-shadow: 2px 2px 10px rgba(214, 51, 132, 0.3);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
             animation: fadeInUp 1.5s ease-out;
             line-height: 1.3;
+            position: relative;
+            display: inline-block;
         }
 
-        /* Main heading */
+        .main-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #d63384, #654ea3, transparent);
+            border-radius: 3px;
+        }
+
+        /* Premium heading */
         .main-heading {
             font-family: 'Poppins', sans-serif;
-            color: #d63384;
+            color: #e2e2e2;
             margin-bottom: 3rem;
             line-height: 1.6;
             font-weight: 500;
             animation: fadeInUp 2s ease-out;
-            text-shadow: 1px 1px 5px rgba(214, 51, 132, 0.2);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
         }
 
         .main-heading strong {
             font-weight: 600;
-            color: #c21760;
+            color: #d63384;
+            text-shadow: 0 0 10px rgba(214, 51, 132, 0.5);
         }
 
-        /* Button styling */
+        /* Premium button styling */
         .journey-btn {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(214, 51, 132, 0.3);
+            background: linear-gradient(135deg, #654ea3 0%, #d63384 100%);
+            border: none;
             border-radius: 50px;
             padding: 18px 40px;
             font-family: 'Poppins', sans-serif;
             font-weight: 500;
-            color: #d63384;
+            color: white;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(214, 51, 132, 0.2);
+            box-shadow: 0 5px 15px rgba(101, 78, 163, 0.4);
             animation: fadeInUp 2.5s ease-out;
             text-decoration: none;
             display: inline-block;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .journey-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #d63384 0%, #654ea3 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
         }
 
         .journey-btn:hover {
-            background: rgba(214, 51, 132, 0.1);
-            border-color: #d63384;
-            box-shadow: 0 12px 35px rgba(214, 51, 132, 0.4);
             transform: translateY(-3px);
-            color: #c21760;
+            box-shadow: 0 8px 25px rgba(214, 51, 132, 0.5);
         }
 
-        /* Floating hearts animation */
+        .journey-btn:hover::before {
+            opacity: 1;
+        }
+
+        .journey-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Premium floating hearts */
         .heart {
             position: absolute;
             color: #ff69b4;
             animation: floatUp 4s linear infinite;
             opacity: 0;
             z-index: 1;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
         }
 
         @keyframes floatUp {
@@ -141,9 +224,10 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: #ff69b4;
+            background: #ffd700;
             border-radius: 50%;
             animation: sparkle 3s linear infinite;
+            box-shadow: 0 0 10px #ffd700;
         }
 
         @keyframes sparkle {
@@ -169,12 +253,112 @@
             }
         }
 
+        /* Premium message box */
+        .premium-message {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(101, 78, 163, 0.1), transparent);
+            z-index: 0;
+        }
+
+        .message-text {
+            font-family: 'Dancing Script', cursive;
+            color: #ffffff;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        }
+
+        .signature {
+            font-style: italic;
+            color: #b9f2ff;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px rgba(185, 242, 255, 0.7);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Premium balloons */
+        .balloons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .balloon {
+            width: 36px;
+            height: 48px;
+            border-radius: 50%;
+            position: relative;
+            animation: float 4s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .balloon:before {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), transparent);
+        }
+
+        .balloon:nth-child(1) {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            animation-delay: 0s;
+        }
+
+        .balloon:nth-child(2) {
+            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+            animation-delay: 0.5s;
+        }
+
+        .balloon:nth-child(3) {
+            background: linear-gradient(135deg, #654ea3, #eaafc8);
+            animation-delay: 1s;
+        }
+
+        /* Birthday text */
+        .birthday-text {
+            font-family: 'Dancing Script', cursive;
+            color: #ffffff;
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #d63384, #b9f2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
         /* ========== RESPONSIVE DESIGN ========== */
         
         /* Mobile Devices (up to 767px) */
         @media (max-width: 767px) {
-            .floating-emoji {
-                font-size: 1.5rem;
+            .container {
+                padding: 20px;
             }
             
             .main-title {
@@ -196,18 +380,21 @@
                 font-size: 1.2rem;
             }
             
-            /* Reduce number of floating elements for performance */
-            .floating-emoji:nth-child(n+7) {
-                display: none;
+            .message-text {
+                font-size: 1.2rem;
+            }
+            
+            .birthday-text {
+                font-size: 1.7rem;
+            }
+            
+            .floating-element {
+                font-size: 1.2rem;
             }
         }
 
         /* Tablet Devices (768px to 1023px) */
         @media (min-width: 768px) and (max-width: 1023px) {
-            .floating-emoji {
-                font-size: 1.8rem;
-            }
-            
             .main-title {
                 font-size: 3rem;
             }
@@ -232,10 +419,6 @@
 
         /* Laptop/Desktop Devices (1024px and above) */
         @media (min-width: 1024px) {
-            .floating-emoji {
-                font-size: 2rem;
-            }
-            
             .main-title {
                 font-size: 3.5rem;
             }
@@ -274,17 +457,10 @@
             }
         }
 
-        /* Ultra-wide Screens (2000px and above) */
-        @media (min-width: 2000px) {
-            .container {
-                max-width: 60%;
-            }
-        }
-
         /* Landscape orientation for mobile */
         @media (max-height: 500px) and (orientation: landscape) {
             .container {
-                padding: 10px;
+                padding: 15px;
             }
             
             .main-title {
@@ -312,48 +488,58 @@
         @media (hover: none) and (pointer: coarse) {
             .journey-btn:hover {
                 transform: none;
-                background: rgba(255, 255, 255, 0.25);
             }
             
             .journey-btn:active {
-                background: rgba(214, 51, 132, 0.1);
                 transform: scale(0.95);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Background floating emojis -->
-    <div class="floating-emoji" style="top: 10%; left: 5%;">💖</div>
-    <div class="floating-emoji" style="top: 20%; right: 10%;">💋</div>
-    <div class="floating-emoji" style="top: 60%; left: 8%;">🥰</div>
-    <div class="floating-emoji" style="top: 70%; right: 15%;">🌸</div>
-    <div class="floating-emoji" style="top: 30%; left: 85%;">💫</div>
-    <div class="floating-emoji" style="top: 80%; right: 5%;">💌</div>
-    <div class="floating-emoji" style="top: 15%; left: 70%;">🧸</div>
-    <div class="floating-emoji" style="top: 45%; right: 80%;">💖</div>
-    <div class="floating-emoji" style="top: 85%; left: 25%;">🌸</div>
-    <div class="floating-emoji" style="top: 5%; right: 40%;">💫</div>
+    <!-- Premium background elements -->
+    <div class="premium-bg">
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        
+        <div class="floating-element diamond" style="top: 10%; left: 5%;">💎</div>
+        <div class="floating-element star" style="top: 20%; right: 10%;">✨</div>
+        <div class="floating-element diamond" style="top: 60%; left: 8%;">💎</div>
+        <div class="floating-element star" style="top: 70%; right: 15%;">✨</div>
+        <div class="floating-element diamond" style="top: 30%; left: 85%;">💎</div>
+        <div class="floating-element star" style="top: 80%; right: 5%;">✨</div>
+    </div>
 
     <!-- Main content -->
     <div class="container">
-        <h1 class="main-title">Wishing you a very happy birthday Lakshuu💖 and a wonderful year ahead!</h1>
+        <h1 class="main-title">Wishing you a very happy birthday Lakshuu💖</h1>
         
         <div class="main-heading">
             Heyyy, Lakshuu 💖<br>
-            I Have something for you 🦋<br>
-            <strong>Hehehe </strong>... and this one's only for <strong>YOU</strong> 💕
+            I have something special for you 🦋<br>
+            <strong>Hehehe</strong>... and this one's exclusively for <strong>YOU</strong> 💕
         </div>
         
+        <div class="premium-message">
+            <p class="message-text">"Hey Doctor... You're the most beautiful soul I've met in my 24 years. Keep smiling and rocking—nothing can stop you from reaching your dreams."</p>
+        </div>
+        
+        <div class="balloons">
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+        </div>
+        
+        <div class="birthday-text">Happy Birthday day!</div>
+        
         <button class="journey-btn" onclick="startJourney()">
-            click here 💫
+            <i class="fas fa-gift"></i> Click here to begin 💫
         </button>
     </div>
 
     <!-- Background music (soft romantic instrumental) -->
     <audio id="bgMusic" loop>
         <source src="birthday.mp4" type="audio/mpeg">
-        <!-- Fallback for browsers that don't support the audio element -->
     </audio>
 
     <script>
@@ -421,28 +607,10 @@
             }
         }
 
-        // Add some interactive sparkles on mouse move (desktop only)
-        if (window.innerWidth >= 768) {
-            document.addEventListener('mousemove', (e) => {
-                if (Math.random() > 0.8) {
-                    const sparkle = document.createElement('div');
-                    sparkle.className = 'sparkle';
-                    sparkle.style.left = e.clientX + 'px';
-                    sparkle.style.top = e.clientY + 'px';
-                    sparkle.style.position = 'fixed';
-                    document.body.appendChild(sparkle);
-
-                    setTimeout(() => {
-                        sparkle.remove();
-                    }, 3000);
-                }
-            });
-        }
-
-        // Add floating emoji animation variety
-        document.querySelectorAll('.floating-emoji').forEach((emoji, index) => {
-            emoji.style.animationDelay = (index * 0.5) + 's';
-            emoji.style.animationDuration = (4 + Math.random() * 4) + 's';
+        // Add floating element animation variety
+        document.querySelectorAll('.floating-element').forEach((element, index) => {
+            element.style.animationDelay = (index * 0.5) + 's';
+            element.style.animationDuration = (4 + Math.random() * 4) + 's';
         });
 
         // Initialize on load
