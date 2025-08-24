@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Universe Begins With You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffe6f0 0%, #ffeef7 50%, #ffffff 100%);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Background floating emojis */
+        .floating-emoji {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.2;
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+                opacity: 0.4;
+            }
+        }
+
+        /* Main container */
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 1200px;
+            z-index: 10;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Title styling */
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            color: #d63384;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 10px rgba(214, 51, 132, 0.3);
+            animation: fadeInUp 1.5s ease-out;
+            line-height: 1.3;
+        }
+
+        /* Main heading */
+        .main-heading {
+            font-family: 'Poppins', sans-serif;
+            color: #d63384;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            font-weight: 500;
+            animation: fadeInUp 2s ease-out;
+            text-shadow: 1px 1px 5px rgba(214, 51, 132, 0.2);
+        }
+
+        .main-heading strong {
+            font-weight: 600;
+            color: #c21760;
+        }
+
+        /* Button styling */
+        .journey-btn {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(214, 51, 132, 0.3);
+            border-radius: 50px;
+            padding: 18px 40px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: #d63384;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(214, 51, 132, 0.2);
+            animation: fadeInUp 2.5s ease-out;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .journey-btn:hover {
+            background: rgba(214, 51, 132, 0.1);
+            border-color: #d63384;
+            box-shadow: 0 12px 35px rgba(214, 51, 132, 0.4);
+            transform: translateY(-3px);
+            color: #c21760;
+        }
+
+        /* Floating hearts animation */
+        .heart {
+            position: absolute;
+            color: #ff69b4;
+            animation: floatUp 4s linear infinite;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(-10vh) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20vh) scale(0);
+            }
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ff69b4;
+            border-radius: 50%;
+            animation: sparkle 3s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Fade in animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        
+        /* Mobile Devices (up to 767px) */
+        @media (max-width: 767px) {
+            .floating-emoji {
+                font-size: 1.5rem;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .main-heading {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .journey-btn {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+            
+            .heart {
+                font-size: 1.2rem;
+            }
+            
+            /* Reduce number of floating elements for performance */
+            .floating-emoji:nth-child(n+7) {
+                display: none;
+            }
+        }
+
+        /* Tablet Devices (768px to 1023px) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .floating-emoji {
+                font-size: 1.8rem;
+            }
+            
+            .main-title {
+                font-size: 3rem;
+            }
+            
+            .main-heading {
+                font-size: 1.4rem;
+            }
+            
+            .journey-btn {
+                padding: 16px 35px;
+                font-size: 1.1rem;
+            }
+            
+            .heart {
+                font-size: 1.4rem;
+            }
+            
+            .container {
+                max-width: 90%;
+            }
+        }
+
+        /* Laptop/Desktop Devices (1024px and above) */
+        @media (min-width: 1024px) {
+            .floating-emoji {
+                font-size: 2rem;
+            }
+            
+            .main-title {
+                font-size: 3.5rem;
+            }
+            
+            .main-heading {
+                font-size: 1.6rem;
+            }
+            
+            .journey-btn {
+                padding: 18px 40px;
+                font-size: 1.2rem;
+            }
+            
+            .heart {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                max-width: 80%;
+            }
+        }
+
+        /* Large Desktop Screens (1440px and above) */
+        @media (min-width: 1440px) {
+            .main-title {
+                font-size: 4rem;
+            }
+            
+            .main-heading {
+                font-size: 1.8rem;
+            }
+            
+            .journey-btn {
+                padding: 20px 45px;
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Ultra-wide Screens (2000px and above) */
+        @media (min-width: 2000px) {
+            .container {
+                max-width: 60%;
+            }
+        }
+
+        /* Landscape orientation for mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .container {
+                padding: 10px;
+            }
+            
+            .main-title {
+                margin-bottom: 1rem;
+                font-size: 1.8rem;
+            }
+            
+            .main-heading {
+                margin-bottom: 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .journey-btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Audio controls (hidden) */
+        audio {
+            display: none;
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .journey-btn:hover {
+                transform: none;
+                background: rgba(255, 255, 255, 0.25);
+            }
+            
+            .journey-btn:active {
+                background: rgba(214, 51, 132, 0.1);
+                transform: scale(0.95);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background floating emojis -->
+    <div class="floating-emoji" style="top: 10%; left: 5%;">💖</div>
+    <div class="floating-emoji" style="top: 20%; right: 10%;">💋</div>
+    <div class="floating-emoji" style="top: 60%; left: 8%;">🥰</div>
+    <div class="floating-emoji" style="top: 70%; right: 15%;">🌸</div>
+    <div class="floating-emoji" style="top: 30%; left: 85%;">💫</div>
+    <div class="floating-emoji" style="top: 80%; right: 5%;">💌</div>
+    <div class="floating-emoji" style="top: 15%; left: 70%;">🧸</div>
+    <div class="floating-emoji" style="top: 45%; right: 80%;">💖</div>
+    <div class="floating-emoji" style="top: 85%; left: 25%;">🌸</div>
+    <div class="floating-emoji" style="top: 5%; right: 40%;">💫</div>
+
+    <!-- Main content -->
+    <div class="container">
+        <h1 class="main-title">Wishing you a very happy birthday Lakshuu💖 and a wonderful year ahead!</h1>
+        
+        <div class="main-heading">
+            Heyyy, Lakshuu 💖<br>
+            I Have something for you 🦋<br>
+            <strong>Hehehe </strong>... and this one's only for <strong>YOU</strong> 💕
+        </div>
+        
+        <button class="journey-btn" onclick="startJourney()">
+            click here 💫
+        </button>
+    </div>
+
+    <!-- Background music (soft romantic instrumental) -->
+    <audio id="bgMusic" loop>
+        <source src="birthday.mp4" type="audio/mpeg">
+        <!-- Fallback for browsers that don't support the audio element -->
+    </audio>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        // Create sparkles
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.top = Math.random() * 100 + 'vh';
+            sparkle.style.animationDelay = Math.random() * 3 + 's';
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 3000);
+        }
+
+        // Start animations with device-appropriate intervals
+        function startAnimations() {
+            // Adjust animation frequency based on device capability
+            const isMobile = window.innerWidth < 768;
+            setInterval(createHeart, isMobile ? 1000 : 800);
+            setInterval(createSparkle, isMobile ? 800 : 500);
+        }
+
+        // Button click function
+        function startJourney() {
+            // Add a beautiful click effect
+            const btn = document.querySelector('.journey-btn');
+            btn.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                btn.style.transform = 'translateY(-3px)';
+                // Navigate to next page
+                window.location.href = 'gallery.html';
+            }, 150);
+        }
+
+        // Background music handling
+        let musicStarted = false;
+        function startMusic() {
+            if (musicStarted) return;
+            const bgMusic = document.getElementById("bgMusic");
+            if (bgMusic) {
+                bgMusic.volume = 0.3;
+                bgMusic.play().then(() => {
+                    musicStarted = true;
+                }).catch((err) => {
+                    console.log("Autoplay blocked. User interaction required.");
+                });
+            }
+        }
+
+        // Add some interactive sparkles on mouse move (desktop only)
+        if (window.innerWidth >= 768) {
+            document.addEventListener('mousemove', (e) => {
+                if (Math.random() > 0.8) {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.style.left = e.clientX + 'px';
+                    sparkle.style.top = e.clientY + 'px';
+                    sparkle.style.position = 'fixed';
+                    document.body.appendChild(sparkle);
+
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 3000);
+                }
+            });
+        }
+
+        // Add floating emoji animation variety
+        document.querySelectorAll('.floating-emoji').forEach((emoji, index) => {
+            emoji.style.animationDelay = (index * 0.5) + 's';
+            emoji.style.animationDuration = (4 + Math.random() * 4) + 's';
+        });
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            startAnimations();
+            
+            // Start music on user interaction
+            document.body.addEventListener("click", startMusic, { once: true });
+            document.body.addEventListener("touchstart", startMusic, { once: true });
+        });
+
+        // Adjust animations on resize
+        window.addEventListener('resize', () => {
+            // Clear existing intervals
+            const intervals = window.intervalIds || [];
+            intervals.forEach(id => clearInterval(id));
+            
+            // Restart animations with new timing
+            startAnimations();
+        });
+    </script>
+</body>
+</html>
